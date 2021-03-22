@@ -177,7 +177,7 @@ def scraping():
     error = '///Error_Scrap///'
     shop_titre = []
 
-    # definition of the function scrap()
+    # definition of the function scrape()
     def scrape():
         # for each review
         for i in all_review:
@@ -202,6 +202,7 @@ def scraping():
             try:
                 review = i.find('p', class_='review-content__text').text
                 avis.append(review)
+                
             except:
                 avis.append(error)
 
@@ -216,6 +217,7 @@ def scraping():
                 score.append(error)
 
             print(score)
+            
 
     # for each shop
     for i in real_link:

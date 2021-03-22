@@ -58,7 +58,7 @@ def scraping():
                    " - tapez fashion pour Shopping & Mode \n"
                    " - tapez sport pour Sport \n"
                    " - tapez vacances pour Vacances & Voyages \n"
-                   " - tapez transport pour Vehicules & Transport \n")
+                   " - tapez transport pour Vehicules & Transport : \n")
 
     """# Mise à jour de l'URL en fonction de la catégorie choisie"""
 
@@ -153,10 +153,8 @@ def scraping():
         link = i['href']
         commerces_link.append(link)
 
-    print(commerces_link)
     # collect only the fist 20 link
     commerces_link = commerces_link[:20]
-    print(commerces_link)
 
     # to get entire links :
 
@@ -177,7 +175,7 @@ def scraping():
     error = '///Error_Scrap///'
     shop_titre = []
 
-    # definition of the function scrape()
+    # definition of the function scrap()
     def scrape():
         # for each review
         for i in all_review:
@@ -217,7 +215,6 @@ def scraping():
                 score.append(error)
 
             print(score)
-            
 
     # for each shop
     for i in real_link:
@@ -234,18 +231,8 @@ def scraping():
         # find the shop name
         shop_title = soup.find('span', class_='multi-size-header__big').text
         print(shop_title)
-        # find the total of review for each shop
-        nb_avis = soup.find('span', class_='headline__review-count').text
-        # replace html 'NBSP' by nothing
-        nb_avis = nb_avis.replace(' ', '')
-        print(nb_avis)
-        # convert in int
-        nb_avis = int(float(nb_avis))
-        # if number of review > 230, scrap, if not, pass
-        if nb_avis > 230:
-            scrape()
-        else:
-            pass
+
+        scrape()
 
     driver.quit()  # when all the data is collected, close the driver
 
@@ -258,7 +245,8 @@ def scraping():
     df = pd.DataFrame(data, columns=['nom_shop', 'titre_avis', 'avis', 'score'])
 
     print(df)
-    df.to_csv('animals.csv')  # transform the dataframe in csv
+    name = input("choisissez un nom pour votre fichier : ")
+    df.to_csv(f'{name}.csv')  # transform the dataframe in csv
 
 
 scraping()

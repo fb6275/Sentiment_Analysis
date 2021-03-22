@@ -53,7 +53,7 @@ driver.get(animals)  # take the url animals
 
 print(driver.current_url)
 
-time.sleep(randint(3, 5))
+#time.sleep(randint(3, 5))
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')  # create the soup and collect the html
 
@@ -233,7 +233,7 @@ for i in real_link:
     soup = BeautifulSoup(html, "html.parser")
 
     # sleep for not breaking the code
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     # search all reviews
     all_review = soup.find_all('article', class_='review')
@@ -262,7 +262,7 @@ for i in page_two:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -285,7 +285,7 @@ for i in page_three:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -308,7 +308,7 @@ for i in page_four:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -330,7 +330,7 @@ for i in page_five:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -353,7 +353,7 @@ for i in page_six:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -376,7 +376,7 @@ for i in page_seven:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -399,7 +399,7 @@ for i in page_eight:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -421,7 +421,7 @@ for i in page_nine:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text
@@ -444,7 +444,7 @@ for i in page_ten:
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    time.sleep(randint(5, 7))
+    #time.sleep(randint(5, 7))
 
     all_review = soup.find_all('article', class_='review')
     shop_title = soup.find('span', class_='multi-size-header__big').text

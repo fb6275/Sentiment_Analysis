@@ -2,29 +2,27 @@ import flask
 from flask import request, jsonify
 import original
 import json
-
+import numpy as np
+import pandas as pd
 
 app = flask.Flask(__name__)
           
 @app.route('/<category>')
-def scrapapi(category):
+def run_api(category):
      df1 = original.scraping(category) 
      df1 = original.nlp(df1)
-     # Wordcloud
-     # cloud = original.wordcloud(df1)
-     count_value = original.the_count(df1['score'])
-     title_shop = original.the_count(df1['nom_shop'])
-     title_shop = df1['nom_shop'].values.tolist() 
      
      result = {}
-     result['score'] = str(count_value)
 
+     result['pos_count'] = np.shape(df1[df1['score'] == 1])[0]
+     result['neg_count'] = np.shape(df1[df1['score'] == 0])[0]
+     result['titre_count'] = str(pd.unique(df1['nom_shop'])).replace("\n", '').replace(
+          '                     ', '')
+     print(result)
      
      return result
-     # print(flask.jsonify(id=count_value, title=title_shop))
-     # return flask.jsonify(id=str(count_value), title=str(title_shop))
 
-# 
+
                
 if __name__ == "__main__":
      # Launch the Flask dev server

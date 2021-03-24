@@ -32,7 +32,7 @@ The weight file is also in the Google Drive.
 
 Download all the files in this github, download the weight file in the Drive,  install the required modules and run **app_scrap.py**
 
-**Before running app_scrap.py, change the path of the chromedriver in original.py (line 31)**
+### **Before running app_scrap.py, change the path of the chromedriver in original.py (line 31)**
 
 When you run app_scrap.py, click on 'Running on _http://127.0.0.1:5000/_' **in the terminal** for launching the API. *(don't click on the link here)*.
 

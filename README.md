@@ -36,4 +36,7 @@ Download all the files in this github, download the weight file in the Drive,  i
 
 When you run app_scrap.py, click on 'Running on _http://127.0.0.1:5000/_' **in the terminal** for launching the API. *(don't click on the link here)*.
 
+---------------------------------------
 
+## POWERPOINT LINK
+[click here](https://docs.google.com/presentation/d/1M5oypsi3uX3uqo5ZtUWg_lTgpb29yLmnMuMW9oweD3Q/edit#slide=id.gca205abcd2_1_27)

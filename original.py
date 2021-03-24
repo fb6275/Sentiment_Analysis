@@ -27,8 +27,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
-def scraping():
-    PATH = "/Users/fb/chromedriver"  # the path where the chromedriver is
+def scraping(choice):
+    PATH = "/home/altesse/chromedriver"  # the path where the chromedriver is
     # option for not seeing the browser
     option = webdriver.ChromeOptions()
     option.add_argument('headless')
@@ -63,29 +63,29 @@ def scraping():
 
     """# Choix de la catégorie"""
 
-    choice = input("Entrez la catégorie choisie : \n "
-                   "- tapez aliments pour Aliments, Boissons, Tabac \n"
-                   " - tapez animaux pour Animaux \n"
-                   " - tapez argent pour Argent & Assurance \n"
-                   " - tapez beauty pour Beauté & Bien-être \n"
-                   " - tapez construction pour Contruction & Fabrication \n"
-                   " - tapez formation pour les Education & Formation \n"
-                   " - tapez tech pour Electronique & Technologie \n"
-                   " - tapez event pour Evenements & Divertissement \n"
-                   " - tapez loisirs pour Loisirs & Artisanat \n"
-                   " - tapez maison pour Maison & Jardin \n"
-                   " - tapez media pour Média & Edition \n"
-                   " - tapez bar pour Restaurants & Bars\n"
-                   " - tapez health pour Santé & Médecine \n"
-                   " - tapez services pour Services  \n"
-                   " - tapez domicile pour Services à Domicile \n"
-                   " - tapez entreprise pour Services aux entreprises \n"
-                   " - tapez legal pour Services Juridiques & Administration \n"
-                   " - tapez public pour Services Publics & Locaux  \n"
-                   " - tapez fashion pour Shopping & Mode \n"
-                   " - tapez sport pour Sport \n"
-                   " - tapez vacances pour Vacances & Voyages \n"
-                   " - tapez transport pour Vehicules & Transport : \n")
+    # choice = input("Entrez la catégorie choisie : \n "
+    #                "- tapez aliments pour Aliments, Boissons, Tabac \n"
+    #                " - tapez animaux pour Animaux \n"
+    #                " - tapez argent pour Argent & Assurance \n"
+    #                " - tapez beauty pour Beauté & Bien-être \n"
+    #                " - tapez construction pour Contruction & Fabrication \n"
+    #                " - tapez formation pour les Education & Formation \n"
+    #                " - tapez tech pour Electronique & Technologie \n"
+    #                " - tapez event pour Evenements & Divertissement \n"
+    #                " - tapez loisirs pour Loisirs & Artisanat \n"
+    #                " - tapez maison pour Maison & Jardin \n"
+    #                " - tapez media pour Média & Edition \n"
+    #                " - tapez bar pour Restaurants & Bars\n"
+    #                " - tapez health pour Santé & Médecine \n"
+    #                " - tapez services pour Services  \n"
+    #                " - tapez domicile pour Services à Domicile \n"
+    #                " - tapez entreprise pour Services aux entreprises \n"
+    #                " - tapez legal pour Services Juridiques & Administration \n"
+    #                " - tapez public pour Services Publics & Locaux  \n"
+    #                " - tapez fashion pour Shopping & Mode \n"
+    #                " - tapez sport pour Sport \n"
+    #                " - tapez vacances pour Vacances & Voyages \n"
+    #                " - tapez vehicle pour Vehicules & Transport : \n")
 
     """# Mise à jour de l'URL en fonction de la catégorie choisie"""
 
@@ -154,7 +154,7 @@ def scraping():
         elif 'vacances' in choice:
             url = driver.get(vacation)
 
-        elif 'transport' in choice:
+        elif 'vehicle' in choice:
             url = driver.get(vehicle)
 
         else:
@@ -162,7 +162,7 @@ def scraping():
 
     """BEGIN"""
 
-    print(driver.current_url)
+    # print(driver.current_url)
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')  # create the soup and collect the html
@@ -192,7 +192,7 @@ def scraping():
     for i in commerces_link:
         link = f'https://fr.trustpilot.com{i}'
         real_link.append(link)
-    print(real_link)
+    # print(real_link)
 
     # create variable for stocking scraped data
 
@@ -220,8 +220,8 @@ def scraping():
                 titre.append(error)
                 shop_titre.append(shop_title)
 
-            print(shop_titre)
-            print(titre)
+            # print(shop_titre)
+            # print(titre)
 
             # ------------------------------------- REVIEW -------------------------------------
             try:
@@ -230,7 +230,7 @@ def scraping():
             except:
                 avis.append(error)
 
-            print(avis)
+            # print(avis)
 
             # ------------------------------------- SCORE -------------------------------------
             try:
@@ -240,14 +240,14 @@ def scraping():
             except:
                 score.append(error)
 
-            print(score)
+            # print(score)
 
     # for each shop
     for i in real_link:
         # collect the url
         driver.get(i)
         # print the actual url collected
-        print(driver.current_url)
+        # print(driver.current_url)
         # make a soup with current url
         html = driver.page_source
         soup = BeautifulSoup(html, "html.parser")
@@ -256,7 +256,7 @@ def scraping():
         all_review = soup.find_all('article', class_='review')
         # find the shop name
         shop_title = soup.find('span', class_='multi-size-header__big').text
-        print(shop_title)
+        # print(shop_title)
 
         scrape()
 
@@ -282,22 +282,47 @@ pipe = pipeline("sentiment-analysis", tokenizer=TOKENIZER, model=model)
 
 
 def nlp(df):
-    # df = df.set_index("Unnamed: 0")
+    
     df.drop(df.loc[df['avis']== "///Error_Scrap///"].index, inplace=True)
     df.astype(str).apply(lambda x: x.str.encode('ascii', 'ignore').str.decode('ascii'))
     df = df.replace(r'\n',  ' ', regex=True)
     # 1 stands for 5 & 4 stars // 0 for 3,2,1 stars
-
-    # for i in df["score"]:
     df["score"] = df["score"].replace('5 étoiles : excellent', 1).replace('4 étoiles : bien', 1).replace('3 étoiles : moyen',0).replace('2 étoiles : bas', 0).replace('1 étoile : mauvais', 0)
-    # pipe(avis)
-
+    
     for i in df['avis']:
         try:
             test = pipe(i)
-            print(f"{test}, {i}")
+            # print(f"{test}, {i}")
         except:
             continue
-
-    print(df)
+        
+    # print(df)
     return df
+
+def the_count(_list):
+    count_value = _list.value_counts()
+    return _list
+
+# def wordcloud(df):
+    
+#     ### Remove stopwords
+#     stop_words = stopwords.words("english")
+#     new_stop_words = ['movie', 'film', 'actor']
+#     stop_words.extend(new_stop_words)
+#     #stop_words[-5:]
+    
+#     ### Extract positive and negative reviews
+#     df_train_pos = df.loc[df['score'] == 1]
+#     df_train_neg = df.loc[df['score'] == 0]
+    
+#     wordcloud = WordCloud(max_words=100, background_color="white").generate(str(df_train_pos['avis']))
+#     plt.figure(figsize=(10, 20))
+#     plt.imshow(wordcloud)
+#     plt.axis("off")
+#     plt.show()
+    
+#     wordcloud = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(str(df_train_neg['avis']))
+#     plt.figure(figsize=(10, 20))
+#     plt.imshow(wordcloud)
+#     plt.axis("off")
+#     plt.show()

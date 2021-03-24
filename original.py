@@ -28,7 +28,7 @@ from PIL import Image
 
 
 def scraping(choice):
-    PATH = "/home/altesse/chromedriver"  # the path where the chromedriver is
+    PATH = "/Users/fb/chromedriver"   # the path where the chromedriver is
     # option for not seeing the browser
     option = webdriver.ChromeOptions()
     option.add_argument('headless')
@@ -295,13 +295,11 @@ def nlp(df):
             # print(f"{test}, {i}")
         except:
             continue
-        
+
     # print(df)
     return df
 
-def the_count(_list):
-    count_value = _list.value_counts()
-    return _list
+
 
 # def wordcloud(df):
     

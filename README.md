@@ -24,7 +24,7 @@ The colab for training the model is available [here](https://colab.research.goog
 
 Make sure you have the required files if you want to train the model. They are available [on this Google Drive](https://drive.google.com/drive/folders/1_pfVF-aI97mOMPyET70bx4NXp4KuF8Qw)
 
-The weight file is also in the Google Drive.
+The weight file is also in the Google Drive. (sentiments.pt)
 
 ---------------------------------------
 

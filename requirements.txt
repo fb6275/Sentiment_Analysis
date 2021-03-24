@@ -1,0 +1,13 @@
+requests
+selenium
+bs4
+pandas
+torch
+transformers
+sentencepiece
+hydra-core
+sklearn
+tensorflow
+keras
+flask
+wordcloud
